@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class Fornecedor extends JFrame {
+public class painel extends JFrame {
 
 	private JPanel contentPane;
 
@@ -17,7 +17,7 @@ public class Fornecedor extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Fornecedor frame = new Fornecedor();
+					painel frame = new painel();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -29,7 +29,7 @@ public class Fornecedor extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Fornecedor() {
+	public painel() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
