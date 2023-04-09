@@ -7,7 +7,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/SQLServer"/>
-	<classpathentry kind="lib" path="C:/Users/Marcelo/eclipse-workspace/lista-endereco/resources/sqljdbc4.jar"/>
-	<classpathentry kind="lib" path="src/bd/daos/jackson-all-1.9.0.jar"/>
+	<classpathentry kind="lib" path="resources/jackson-all-1.9.0.jar"/>
+	<classpathentry kind="lib" path="resources/sqljdbc4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

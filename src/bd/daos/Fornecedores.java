@@ -60,18 +60,18 @@ public class Fornecedores {
       String sql;
 
       sql = "INSERT INTO FORNECEDORES " +
-          "(CODIGO,CNPJ,RAZAOSOCIAL,CEP,NUMERO,COMPLEMENTO) " +
+          "(CNPJ,RAZAOSOCIAL,CEP,NUMERO,COMPLEMENTO) " +
           "VALUES " +
-          "(?,?,?,?,?,?)";
+          "(?,?,?,?,?)";
 
       BDSQLServer.COMANDO.prepareStatement(sql);
 
-      BDSQLServer.COMANDO.setInt(1, fornecedor.getCodigo());
-      BDSQLServer.COMANDO.setString(2, fornecedor.getCnpj());
-      BDSQLServer.COMANDO.setString(3, fornecedor.getRazaoSocial());
-      BDSQLServer.COMANDO.setString(4, fornecedor.getCep());
-      BDSQLServer.COMANDO.setInt(5, fornecedor.getNumero());
-      BDSQLServer.COMANDO.setString(6, fornecedor.getComplemento());
+     // BDSQLServer.COMANDO.setInt(1, fornecedor.getCodigo());
+      BDSQLServer.COMANDO.setString(1, fornecedor.getCnpj());
+      BDSQLServer.COMANDO.setString(2, fornecedor.getRazaoSocial());
+      BDSQLServer.COMANDO.setString(3, fornecedor.getCep());
+      BDSQLServer.COMANDO.setInt(4, fornecedor.getNumero());
+      BDSQLServer.COMANDO.setString(5, fornecedor.getComplemento());
 
       BDSQLServer.COMANDO.executeUpdate();
       BDSQLServer.COMANDO.commit();

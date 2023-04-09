@@ -1,21 +1,57 @@
 package controller;
+
 import bd.dbos.Fornecedor;
+import buscacep.Logradouro;
 import bd.daos.Fornecedores;
 
 public class Crud {
-	public static void criarFornecedor(int codigo, String cnpj, String razaoSocial, String cep, int numero, String complemento ) {
-	    try {
-	    	if(Fornecedores.cadastrado(codigo) ) {
-	    		System.out.println("Código já cadastrado");
-	    	 }
-	    	else {
-	    		Fornecedores.incluir(new Fornecedor(codigo,cnpj,razaoSocial,cep,numero,complemento));
-	    		System.out.println("Fornecedor inserido com sucesso");
-	    	}
+	public static void criar(Fornecedor fornecedor) {
 
-	    } catch (Exception erro) {
-	      System.err.println(erro.getMessage());
-	    }
+		try {
+			
+			Fornecedores.incluir(fornecedor);
+		} catch (Exception erro) {
+			erro.printStackTrace();
+			System.out.println(erro.getMessage());
+		}
+
+	}
+
+	public static void excluir(int codigo) throws Exception {
+		try {
+			
+			Fornecedores.excluir(codigo);
+			
+		} catch (Exception erro) {
+			  erro.printStackTrace();
+			  System.out.println(erro.getMessage());
 	
 	  }
+	}
+	
+	public static void alterar(Fornecedor fornecedor) throws Exception {
+		try {
+			
+			Fornecedores.alterar(fornecedor.getCodigo(), fornecedor.getCep(), fornecedor.getNumero(),fornecedor.getComplemento());
+			
+		} catch (Exception erro) {
+			  erro.printStackTrace();
+			  System.out.println(erro.getMessage());
+	
+	  }
+	}
+	
+	public static FornecedorLogradouro buscar(int codigo) throws Exception {
+		try {
+			Fornecedor fornecedor = Fornecedores.getFornecedor(codigo);
+			Logradouro logradouro = BuscaCep.getLogradouroByCep(fornecedor.getCep());
+									
+			return new FornecedorLogradouro(fornecedor, logradouro);
+		} catch (Exception erro) {
+			  erro.printStackTrace();
+			  System.out.println(erro.getMessage());
+			  return null;
+	  }
+	}
 }
+	
