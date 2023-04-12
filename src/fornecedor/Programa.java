@@ -1,3 +1,4 @@
+package fornecedor;
 
 import bd.daos.Fornecedores;
 import bd.dbos.Fornecedor;

@@ -113,7 +113,7 @@ public class Cadastro extends JFrame {
 				
 				
 				try {
-					Crud.criar(new Fornecedor(codigo, cnpj, razaoSocial, cep, numero, complemento ));
+					Fornecedores.incluir(new Fornecedor(codigo, cnpj, razaoSocial, cep, numero, complemento ));
 				} catch (Exception e1) {
 					
 					e1.printStackTrace();
@@ -168,7 +168,7 @@ public class Cadastro extends JFrame {
 				try {
 					if(Fornecedores.cadastrado(codigo)) {
 					
-						Crud.buscar(codigo);
+						Fornecedores.getFornecedor(codigo);
 						Fornecedor fornecedor = Fornecedores.getFornecedor(codigo);
 						Logradouro logradouro = BuscaCep.getLogradouroByCep(fornecedor.getCep());
 						String codigoString = String.valueOf(fornecedor.getCodigo());
