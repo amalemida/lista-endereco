@@ -81,6 +81,15 @@ public class Fornecedor implements Cloneable {
     this.setNumero(numero);
     this.setComplemento(complemento);
   }
+  
+  public Fornecedor(String cnpj, String razaoSocial, String cep, int numero, String complemento) throws Exception {
+	    this.setCnpj(cnpj);
+	    this.setRazaoSocial(razaoSocial);
+	    this.setCep(cep);
+	    this.setNumero(numero);
+	    this.setComplemento(complemento);
+	  
+  }
 
   public Fornecedor(int codigo, String cep, int numero, String complemento) throws Exception {
     this.setCodigo(codigo);
