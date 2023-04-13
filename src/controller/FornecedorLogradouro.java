@@ -4,29 +4,29 @@ import bd.dbos.Fornecedor;
 import buscacep.Logradouro;
 
 public class FornecedorLogradouro {
-	  private int codigo;
-	  private String cnpj;
-	  private String razaoSocial;
-	  private String cep;
-	  private int numero;
-	  private String complemento;
-	  private String logradouro;
-	  private String bairro;
-	  private String cidade;
-	  private String estado;
-	  
-	 public FornecedorLogradouro (Fornecedor fornecedor, Logradouro logradouro) {
-		 this.codigo = fornecedor.getCodigo();
-		 this.cnpj = fornecedor.getCnpj();
-		 this.razaoSocial = fornecedor.getRazaoSocial();
-		 this.cep = fornecedor.getCep();
-		 this.numero = fornecedor.getNumero();
-		 this.complemento = fornecedor.getComplemento();
-		 this.logradouro = logradouro.getLogradouro();
-		 this.bairro = logradouro.getBairro();
-		 this.cidade = logradouro.getCidade();
-		 this.estado = logradouro.getEstado();
-	 }
+	private int codigo;
+	private String cnpj;
+	private String razaoSocial;
+	private String cep;
+	private int numero;
+	private String complemento;
+	private String logradouro;
+	private String bairro;
+	private String cidade;
+	private String estado;
+
+	public FornecedorLogradouro(Fornecedor fornecedor, Logradouro logradouro) {
+		this.codigo = fornecedor.getCodigo();
+		this.cnpj = fornecedor.getCnpj();
+		this.razaoSocial = fornecedor.getRazaoSocial();
+		this.cep = fornecedor.getCep();
+		this.numero = fornecedor.getNumero();
+		this.complemento = fornecedor.getComplemento();
+		this.logradouro = logradouro.getLogradouro();
+		this.bairro = logradouro.getBairro();
+		this.cidade = logradouro.getCidade();
+		this.estado = logradouro.getEstado();
+	}
 
 	@Override
 	public String toString() {
