@@ -1,6 +1,7 @@
 package bd;
 
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
@@ -36,7 +37,6 @@ public class Cadastro extends JFrame {
 	private JTextField textBairro;
 	private JTextField textLogradouro;
 
-
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -51,7 +51,7 @@ public class Cadastro extends JFrame {
 	}
 
 	// limpa os dados da tela
-	public void clear() {
+	public void limparTela() {
 
 		textCodigo.setText("");
 		textCNPJ.setText("");
@@ -64,7 +64,6 @@ public class Cadastro extends JFrame {
 		textEstado.setText("");
 		textLogradouro.setText("");
 		textCodigo.requestFocus();
-	
 	}
 
 	public Cadastro() {
@@ -72,6 +71,7 @@ public class Cadastro extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 657, 390);
 		contentPane = new JPanel();
+		contentPane.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -103,15 +103,14 @@ public class Cadastro extends JFrame {
 				String razaoSocial = textRazaoSocial.getText();
 				String cep = textCEP.getText();
 				String numeroStr = textNumero.getText();
-				int numero = Integer.parseInt(numeroStr); //converte o numero string para int
+				int numero = Integer.parseInt(numeroStr); // converte o numero string para int
 				String complemento = textComplemento.getText();
 
 				try {
 
 					Fornecedores.incluir(new Fornecedor(cnpj, razaoSocial, cep, numero, complemento));
-					clear();
+					limparTela();
 					JOptionPane.showMessageDialog(null, "Fornecedor incluído com sucesso!");
-
 
 				} catch (Exception e1) {
 
@@ -145,7 +144,7 @@ public class Cadastro extends JFrame {
 					Logradouro logradouro = BuscaCep.getLogradouroByCep(cep);
 					if (logradouro == null) {
 						JOptionPane.showMessageDialog(textCEP, "CEP inválido");
-						return; //parar aqui
+						return; // parar aqui
 					}
 					textBairro.setText(logradouro.getBairro());
 					textCidade.setText(logradouro.getCidade());
@@ -163,7 +162,7 @@ public class Cadastro extends JFrame {
 		contentPane.add(textCEP);
 
 		JLabel lblNumero = new JLabel("Número");
-		lblNumero.setBounds(489, 134, 64, 13);
+		lblNumero.setBounds(498, 135, 64, 13);
 		contentPane.add(lblNumero);
 
 		textNumero = new JTextField();
@@ -180,6 +179,52 @@ public class Cadastro extends JFrame {
 		textComplemento.setBounds(108, 159, 524, 19);
 		contentPane.add(textComplemento);
 
+		JButton btnAtualizar = new JButton("Atualizar");
+		btnAtualizar.setEnabled(false);
+		btnAtualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				try {
+					String codigoStr = textCodigo.getText();
+					int codigo = Integer.parseInt(codigoStr);
+					String cep = textCEP.getText();
+					String numeroStr = textNumero.getText();
+					int numero = Integer.parseInt(numeroStr);
+					String complemento = textComplemento.getText();
+
+					Fornecedores.alterar(codigo, cep, numero, complemento);
+					limparTela();
+					JOptionPane.showMessageDialog(null, "Fornecedor atualizado com sucesso!");
+					btnAtualizar.setEnabled(false);
+
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnAtualizar.setBounds(277, 321, 89, 23);
+		contentPane.add(btnAtualizar);
+
+		JButton btnExcluir = new JButton("Excluir");
+		btnExcluir.setEnabled(false);
+		btnExcluir.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				try {
+					String codigoStr = textCodigo.getText();
+					int codigo = Integer.parseInt(codigoStr);
+					Fornecedores.excluir(codigo);
+					limparTela();
+					JOptionPane.showMessageDialog(null, "Fornecedor excluído com sucesso!");
+					btnExcluir.setEnabled(false);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnExcluir.setBounds(399, 321, 89, 23);
+		contentPane.add(btnExcluir);
+
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -191,12 +236,14 @@ public class Cadastro extends JFrame {
 
 						FornecedorLogradouro fornecedorLogradouro = BuscaFornecedor.buscar(codigo);
 
-						String codigoString = String.valueOf(fornecedorLogradouro.getCodigo()); //converte o código int em String
+						String codigoString = String.valueOf(fornecedorLogradouro.getCodigo()); // converte o código int
+																								// em String
 						textCodigo.setText(codigoString);
 						textCNPJ.setText(fornecedorLogradouro.getCnpj());
 						textRazaoSocial.setText(fornecedorLogradouro.getRazaoSocial());
 						textCEP.setText(fornecedorLogradouro.getCep());
-						String numeroString = String.valueOf(fornecedorLogradouro.getNumero()); //converte o código int em String
+						String numeroString = String.valueOf(fornecedorLogradouro.getNumero()); // converte o código int
+																								// em String
 						textNumero.setText(numeroString);
 						textCodigo.setText(codigoString);
 						textComplemento.setText(fornecedorLogradouro.getComplemento());
@@ -205,10 +252,12 @@ public class Cadastro extends JFrame {
 						textEstado.setText(fornecedorLogradouro.getEstado());
 						textLogradouro.setText(fornecedorLogradouro.getLogradouro());
 
+						btnExcluir.setEnabled(true);
+						btnAtualizar.setEnabled(true);
 					} else {
 						JOptionPane.showMessageDialog(null, "Código não cadastrado!");
-						clear();
-						}
+						limparTela();
+					}
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
@@ -225,17 +274,17 @@ public class Cadastro extends JFrame {
 		textCidade = new JTextField();
 		textCidade.setEditable(false);
 		textCidade.setColumns(60);
-		textCidade.setBounds(108, 215, 249, 19);
+		textCidade.setBounds(108, 215, 334, 19);
 		contentPane.add(textCidade);
 
 		JLabel lblEstado = new JLabel("Estado");
-		lblEstado.setBounds(489, 218, 76, 13);
+		lblEstado.setBounds(506, 218, 76, 13);
 		contentPane.add(lblEstado);
 
 		textEstado = new JTextField();
 		textEstado.setEditable(false);
 		textEstado.setColumns(60);
-		textEstado.setBounds(527, 214, 104, 19);
+		textEstado.setBounds(567, 214, 64, 19);
 		contentPane.add(textEstado);
 
 		JLabel lblBairro = new JLabel("Bairro");
@@ -261,51 +310,13 @@ public class Cadastro extends JFrame {
 		JButton btnLimpar = new JButton("Limpa ");
 		btnLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				clear();
+				limparTela();
+				btnExcluir.setEnabled(false);
+				btnAtualizar.setEnabled(false);
 			}
 		});
 		btnLimpar.setBounds(525, 321, 89, 23);
 		contentPane.add(btnLimpar);
-
-		JButton btnAtualizar = new JButton("Atualizar");
-		btnAtualizar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				try {
-					String codigoStr = textCodigo.getText();
-					int codigo = Integer.parseInt(codigoStr);
-					String cep = textCEP.getText();
-					String numeroStr = textNumero.getText();
-					int numero = Integer.parseInt(numeroStr);
-					String complemento = textComplemento.getText();
-
-					Fornecedores.alterar(codigo, cep, numero, complemento);
-					clear();
-					JOptionPane.showMessageDialog(null, "Fornecedor atualizado com sucesso!");
-					
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			}
-		});
-		btnAtualizar.setBounds(277, 321, 89, 23);
-		contentPane.add(btnAtualizar);
-
-		JButton btnExcluir = new JButton("Excluir");
-		btnExcluir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					String codigoStr = textCodigo.getText();
-					int codigo = Integer.parseInt(codigoStr);
-					Fornecedores.excluir(codigo);
-					clear();
-					JOptionPane.showMessageDialog(null, "Fornecedor excluído com sucesso!");
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			}
-		});
-		btnExcluir.setBounds(399, 321, 89, 23);
-		contentPane.add(btnExcluir);
 	}
+
 }

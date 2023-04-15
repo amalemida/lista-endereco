@@ -1,10 +1,5 @@
 package controller;
 
-import java.io.InputStream;
-import java.net.URL;
-
-import javax.net.ssl.HttpsURLConnection;
-
 import buscacep.ClienteWS;
 import buscacep.Logradouro;
 
