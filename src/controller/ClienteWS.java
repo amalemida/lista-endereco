@@ -1,4 +1,4 @@
-package buscacep;
+package controller;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;

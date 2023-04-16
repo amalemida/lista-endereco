@@ -1,4 +1,4 @@
-package buscacep;
+package model;
 public class Logradouro
 {
     private String logradouro;

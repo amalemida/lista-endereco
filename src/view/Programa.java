@@ -1,8 +1,8 @@
-package bd;
+package view;
 
 import bd.daos.Fornecedores;
 import controller.BuscaFornecedor;
-import controller.FornecedorLogradouro;
+import model.FornecedorLogradouro;
 
 public class Programa {
 

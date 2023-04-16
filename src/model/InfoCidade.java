@@ -1,4 +1,4 @@
-package buscacep;
+package model;
 public class InfoCidade implements Cloneable
 {
     private String codigo_ibge;

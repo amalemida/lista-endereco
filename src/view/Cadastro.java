@@ -1,4 +1,4 @@
-package bd;
+package view;
 
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -17,10 +17,10 @@ import javax.swing.border.EmptyBorder;
 
 import bd.daos.Fornecedores;
 import bd.dbos.Fornecedor;
-import buscacep.Logradouro;
-import controller.BuscaCep;
+import controller.BuscaLogradouro;
+import model.FornecedorLogradouro;
+import model.Logradouro;
 import controller.BuscaFornecedor;
-import controller.FornecedorLogradouro;
 
 @SuppressWarnings("serial")
 public class Cadastro extends JFrame {
@@ -64,6 +64,7 @@ public class Cadastro extends JFrame {
 		textEstado.setText("");
 		textLogradouro.setText("");
 		textCodigo.requestFocus();
+		
 	}
 
 	public Cadastro() {
@@ -153,7 +154,7 @@ public class Cadastro extends JFrame {
 				try {
 					String cep = textCEP.getText();
 
-					Logradouro logradouro = BuscaCep.getLogradouroByCep(cep);
+					Logradouro logradouro = BuscaLogradouro.getLogradouroByCep(cep);
 					if (logradouro == null) {
 						JOptionPane.showMessageDialog(textCEP, "CEP inválido");
 						return; // parar aqui
@@ -205,6 +206,7 @@ public class Cadastro extends JFrame {
 					btnExcluir.setEnabled(false);
 					btnAtualizar.setEnabled(false);
 					btnIncluir.setEnabled(true);
+					textCodigo.setEditable(true);
 					textCNPJ.setEditable(true);
 					textRazaoSocial.setEditable(true);
 				} catch (Exception e1) {
@@ -238,6 +240,7 @@ public class Cadastro extends JFrame {
 						String complemento = textComplemento.getText();
 
 						Fornecedores.alterar(codigo, cep, numero, complemento);
+						
 						limparTela();
 						JOptionPane.showMessageDialog(null, "Fornecedor atualizado com sucesso!");
 						btnAtualizar.setEnabled(false);
@@ -265,7 +268,6 @@ public class Cadastro extends JFrame {
 		});
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				int codigo = 0;
 
 				try {
@@ -275,7 +277,7 @@ public class Cadastro extends JFrame {
 
 					} else {
 						String codigoStr = textCodigo.getText();
-						codigo = Integer.parseInt(codigoStr);
+						codigo = Integer.parseInt(codigoStr); //convert o código string em int
 					}
 					if (Fornecedores.cadastrado(codigo)) {
 
@@ -290,7 +292,6 @@ public class Cadastro extends JFrame {
 						String numeroString = String.valueOf(fornecedorLogradouro.getNumero()); // converte o código int
 																								// em String
 						textNumero.setText(numeroString);
-						textCodigo.setText(codigoString);
 						textComplemento.setText(fornecedorLogradouro.getComplemento());
 						textBairro.setText(fornecedorLogradouro.getBairro());
 						textCidade.setText(fornecedorLogradouro.getCidade());

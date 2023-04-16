@@ -1,7 +1,6 @@
-package controller;
+package model;
 
 import bd.dbos.Fornecedor;
-import buscacep.Logradouro;
 
 public class FornecedorLogradouro {
 	private int codigo;
@@ -30,9 +29,17 @@ public class FornecedorLogradouro {
 
 	@Override
 	public String toString() {
-		return "FornecedorLogradouro [codigo=" + codigo + ", cnpj=" + cnpj + ", razaoSocial=" + razaoSocial + ", cep="
-				+ cep + ", numero=" + numero + ", complemento=" + complemento + ", logradouro=" + logradouro
-				+ ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + "]";
+		return "FornecedorLogradouro [codigo=" + codigo 
+				+ ", cnpj="+ cnpj
+				+ ", razaoSocial=" + razaoSocial 
+				+ ", cep="+ cep 
+				+ ", numero=" + numero
+				+ ", complemento=" + complemento
+				+ ", logradouro=" + logradouro
+				+ ", bairro=" + bairro
+				+ ", cidade=" + cidade
+				+ ", estado=" + estado
+				+ "]";
 	}
 
 	public int getCodigo() {

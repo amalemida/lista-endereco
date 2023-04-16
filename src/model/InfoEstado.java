@@ -1,4 +1,4 @@
-package buscacep;
+package model;
 public class InfoEstado implements Cloneable
 {
     private String nome;

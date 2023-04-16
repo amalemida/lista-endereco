@@ -1,9 +1,8 @@
 package controller;
 
-import buscacep.ClienteWS;
-import buscacep.Logradouro;
+import model.Logradouro;
 
-public class BuscaCep {
+public class BuscaLogradouro {
 	public static Logradouro getLogradouroByCep(String cep) {
 		try {
 
