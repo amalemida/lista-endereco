@@ -7,8 +7,8 @@
 > Colégio Técnico de Campinas
 
 ```
-	Professor: André
+	Professor: André Carvalho
 	Alunos : 
-	Antonio Marcelo de Almeida RA: 22529
+	Antonio Marcelo de Almeida    RA: 22529
 	Wanderley dos Santos Paranhos RA: 22597
 			
