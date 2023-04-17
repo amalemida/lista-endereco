@@ -50,7 +50,7 @@ public class ClienteWS
         }
         catch (Exception erro)
         {
-             erro.printStackTrace();
+             erro.getSuppressed();
         }	
 
         return objetoRetorno;

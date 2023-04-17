@@ -99,7 +99,7 @@ public class Cadastro extends JFrame {
 		textRazaoSocial = new JTextField();
 		textRazaoSocial.setBounds(108, 68, 524, 19);
 		contentPane.add(textRazaoSocial);
-		textRazaoSocial.setColumns(60);
+		textRazaoSocial.setColumns(50);
 
 		btnIncluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -139,7 +139,7 @@ public class Cadastro extends JFrame {
 		contentPane.add(lblCNPJ);
 
 		textCNPJ = new JTextField();
-		textCNPJ.setColumns(60);
+		textCNPJ.setColumns(18);
 		textCNPJ.setBounds(108, 96, 178, 19);
 		contentPane.add(textCNPJ);
 
@@ -170,7 +170,7 @@ public class Cadastro extends JFrame {
 				}
 			}
 		});
-		textCEP.setColumns(60);
+		textCEP.setColumns(8);
 		textCEP.setBounds(352, 95, 104, 19);
 		contentPane.add(textCEP);
 
@@ -179,7 +179,7 @@ public class Cadastro extends JFrame {
 		contentPane.add(lblNumero);
 
 		textNumero = new JTextField();
-		textNumero.setColumns(60);
+		textNumero.setColumns(4);
 		textNumero.setBounds(549, 131, 83, 19);
 		contentPane.add(textNumero);
 
